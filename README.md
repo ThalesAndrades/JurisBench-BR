@@ -65,6 +65,8 @@ python jurisbench_v0.py   # resultados em results/
 
 Quer testar **seu próprio modelo**? Adicione o repositório HuggingFace ao dicionário `MODELS` em [`jurisbench_v0.py`](jurisbench_v0.py) e rode. Depois [submeta ao leaderboard](LEADERBOARD.md) 🏆.
 
+> 🔒 Modelos que exigem `trust_remote_code` (código próprio no repositório do modelo) ficam **desabilitados por padrão**: habilite com `JURISBENCH_TRUST_REMOTE_CODE=1` apenas para repositórios que você auditou — veja a [política de segurança](SECURITY.md).
+
 Dica: baixe modelos e datasets antecipadamente com o [hfdownloader](https://github.com/ThalesAndrades/HuggingFaceModelDownloader):
 
 ```bash

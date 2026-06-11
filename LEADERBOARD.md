@@ -28,7 +28,8 @@ Tarefa v0: **cabeçalho de ementa → corpo do acórdão** (STJ) · 200 consulta
 - O modelo precisa estar acessível (HuggingFace público ou gated com acesso concedido a nós);
 - Aceitamos embeddings (bi-encoders) na v0; rerankers terão trilha própria na v1;
 - O resultado publicado é o do conjunto completo — pode diferir do número que você obteve na parte pública;
-- Resultados são publicados com data e hash de revisão do modelo, para reprodutibilidade.
+- Resultados são publicados com data e hash de revisão do modelo, para reprodutibilidade;
+- Modelos que exigem `trust_remote_code` são avaliados em ambiente isolado (sandbox) e podem ser recusados se o código do repositório não for auditável — veja a [política de segurança](SECURITY.md).
 
 ---
 
