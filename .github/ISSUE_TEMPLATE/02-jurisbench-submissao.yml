@@ -1,0 +1,62 @@
+name: "⚖️ JurisBench-BR — submissão / acesso antecipado JurisEmbed-BR"
+description: "Quero submeter um modelo ao leaderboard, avaliar meu RAG jurídico ou ter acesso antecipado ao JurisEmbed-BR."
+title: "[JurisBench] "
+labels: ["lead-jurisbench"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bem-vindo ao **JurisBench-BR** (THM Tecnologia). Parte do conjunto de teste é privada — submissões são avaliadas por nós e publicadas no leaderboard.
+        ⚠️ *Issue pública: não inclua dados confidenciais. Privado: thalesandradees@gmail.com*
+  - type: dropdown
+    id: objetivo
+    attributes:
+      label: O que você procura?
+      options:
+        - Submeter um modelo ao leaderboard
+        - Acesso antecipado ao JurisEmbed-BR
+        - Avaliar a qualidade do meu RAG jurídico atual
+        - Parceria comercial / integração (lawtech, software jurídico)
+        - Pesquisa acadêmica
+    validations:
+      required: true
+  - type: dropdown
+    id: perfil
+    attributes:
+      label: Seu perfil
+      options:
+        - Desenvolvedor(a) / engenheiro(a) de ML
+        - Lawtech / empresa de software jurídico
+        - Escritório de advocacia / departamento jurídico
+        - Pesquisador(a) / academia
+        - Outro
+    validations:
+      required: true
+  - type: input
+    id: organizacao
+    attributes:
+      label: Organização / projeto (opcional)
+      placeholder: "Nome da empresa, escritório, universidade ou projeto"
+    validations:
+      required: false
+  - type: input
+    id: modelo
+    attributes:
+      label: Se for submissão — link do modelo no HuggingFace
+      placeholder: "https://huggingface.co/org/modelo"
+    validations:
+      required: false
+  - type: textarea
+    id: stack
+    attributes:
+      label: Que stack de busca/RAG você usa hoje? (se aplicável)
+      placeholder: "Ex.: OpenAI embeddings + Pinecone; bge-m3 + pgvector; Elasticsearch puro..."
+    validations:
+      required: false
+  - type: input
+    id: contato
+    attributes:
+      label: Contato preferido (opcional — se preferir privacidade, escreva "por e-mail")
+      placeholder: "nome@org.com.br ou linkedin.com/in/..."
+    validations:
+      required: false
