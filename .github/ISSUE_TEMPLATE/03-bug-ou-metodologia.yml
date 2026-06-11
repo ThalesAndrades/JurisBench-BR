@@ -1,0 +1,29 @@
+name: "🐛 Bug ou crítica metodológica"
+description: "Encontrou um erro no código, nos dados ou um problema no desenho do benchmark? Conte aqui — crítica metodológica é contribuição de primeira classe."
+title: "[Bug/Metodologia] "
+labels: ["discussao"]
+body:
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo
+      options:
+        - Bug no código de avaliação
+        - Problema nos dados (corpus/consultas)
+        - Crítica ao desenho do benchmark (métricas, amostragem, vazamento lexical...)
+        - Sugestão de nova tarefa ou tribunal
+    validations:
+      required: true
+  - type: textarea
+    id: descricao
+    attributes:
+      label: Descrição
+      placeholder: "Descreva o problema ou a crítica. Para bugs: como reproduzir. Para metodologia: qual o impacto esperado nos resultados."
+    validations:
+      required: true
+  - type: textarea
+    id: proposta
+    attributes:
+      label: Proposta de correção/melhoria (opcional)
+    validations:
+      required: false

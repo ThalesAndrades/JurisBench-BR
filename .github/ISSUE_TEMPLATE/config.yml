@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "📬 THM Tecnologia — contato comercial direto"
+    url: "mailto:thalesandradees@gmail.com"
+    about: "Assuntos comerciais, dados sensíveis ou conversa privada sobre Escriba / JurisEmbed-BR."
+  - name: "📖 Apresentação da THM Tecnologia"
+    url: "https://github.com/ThalesAndrades/jurisbench-br/blob/main/APRESENTACAO-THM.md"
+    about: "Quem somos, JurisBench-BR, Escriba e roadmap público."

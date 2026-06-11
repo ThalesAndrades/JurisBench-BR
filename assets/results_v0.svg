@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <style>
+    .lbl  { fill: #8b949e; font-size: 14px; }
+    .val  { fill: #8b949e; font-size: 13px; font-weight: 600; }
+    .ttl  { fill: #8b949e; font-size: 17px; font-weight: 700; }
+    .sub  { fill: #8b949e; font-size: 12px; }
+    .axis { stroke: #8b949e; stroke-opacity: .25; }
+  </style>
+
+  <text x="20" y="28" class="ttl">JurisBench-BR v0 — busca jurídica no STJ (200 consultas, 1.500 acórdãos)</text>
+  <text x="20" y="48" class="sub">Quanto maior, melhor. BM25 = algoritmo lexical de 1994, sem IA.</text>
+
+  <!-- legenda -->
+  <rect x="560" y="18" width="14" height="14" rx="2" fill="#388bfd"/>
+  <text x="580" y="30" class="sub">nDCG@10</text>
+  <rect x="660" y="18" width="14" height="14" rx="2" fill="#388bfd" fill-opacity="0.45"/>
+  <text x="680" y="30" class="sub">Recall@10</text>
+
+  <!-- grade -->
+  <line x1="200" y1="64" x2="200" y2="330" class="axis"/>
+  <line x1="340" y1="64" x2="340" y2="330" class="axis"/>
+  <line x1="480" y1="64" x2="480" y2="330" class="axis"/>
+  <line x1="620" y1="64" x2="620" y2="330" class="axis"/>
+  <line x1="760" y1="64" x2="760" y2="330" class="axis"/>
+  <text x="196" y="348" class="sub">0,0</text>
+  <text x="333" y="348" class="sub">0,25</text>
+  <text x="474" y="348" class="sub">0,5</text>
+  <text x="613" y="348" class="sub">0,75</text>
+  <text x="753" y="348" class="sub">1,0</text>
+
+  <!-- BM25 -->
+  <text x="190" y="92" class="lbl" text-anchor="end">BM25 (1994)</text>
+  <rect x="200" y="74" width="432" height="18" rx="3" fill="#d29922"/>
+  <text x="640" y="88" class="val">0,771</text>
+  <rect x="200" y="96" width="501" height="18" rx="3" fill="#d29922" fill-opacity="0.45"/>
+  <text x="709" y="110" class="val">0,895</text>
+
+  <!-- bge-m3 -->
+  <text x="190" y="158" class="lbl" text-anchor="end">bge-m3 (SOTA multilíngue)</text>
+  <rect x="200" y="140" width="247" height="18" rx="3" fill="#388bfd"/>
+  <text x="455" y="154" class="val">0,441</text>
+  <rect x="200" y="162" width="347" height="18" rx="3" fill="#388bfd" fill-opacity="0.45"/>
+  <text x="555" y="176" class="val">0,620</text>
+
+  <!-- serafim -->
+  <text x="190" y="224" class="lbl" text-anchor="end">serafim-335m (SOTA PT)</text>
+  <rect x="200" y="206" width="95" height="18" rx="3" fill="#388bfd"/>
+  <text x="303" y="220" class="val">0,170</text>
+  <rect x="200" y="228" width="146" height="18" rx="3" fill="#388bfd" fill-opacity="0.45"/>
+  <text x="354" y="242" class="val">0,260</text>
+
+  <!-- MiniLM -->
+  <text x="190" y="290" class="lbl" text-anchor="end">MiniLM-multilingual</text>
+  <rect x="200" y="272" width="22" height="18" rx="3" fill="#388bfd"/>
+  <text x="230" y="286" class="val">0,040</text>
+  <rect x="200" y="294" width="45" height="18" rx="3" fill="#388bfd" fill-opacity="0.45"/>
+  <text x="253" y="308" class="val">0,080</text>
+</svg>
