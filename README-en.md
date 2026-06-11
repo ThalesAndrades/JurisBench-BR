@@ -63,6 +63,8 @@ python jurisbench_v0.py   # results written to results/
 
 Want to test **your own model**? Add its HuggingFace repo to the `MODELS` dict in [`jurisbench_v0.py`](jurisbench_v0.py) and run. Then [submit it to the leaderboard](LEADERBOARD.md) 🏆.
 
+> 🔒 Models that require `trust_remote_code` (custom code in the model repo) are **disabled by default**: enable with `JURISBENCH_TRUST_REMOTE_CODE=1` only for repos you have audited — see the [security policy](SECURITY.md).
+
 ## 🏆 Leaderboard and private test set
 
 To prevent overfitting and contamination, **part of the evaluation set is private**. Submissions are evaluated by us and published on the [leaderboard](LEADERBOARD.md).

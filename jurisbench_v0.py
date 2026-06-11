@@ -12,8 +12,11 @@ Uso (Colab ou local):
   python jurisbench_v0.py
 
 Configuração via variáveis de ambiente (padrões = execução v0 publicada):
-  JURISBENCH_N_QUERIES  número de consultas (padrão: 200)
-  JURISBENCH_N_CORPUS   tamanho do corpus de busca (padrão: 1500)
+  JURISBENCH_N_QUERIES          número de consultas (padrão: 200)
+  JURISBENCH_N_CORPUS           tamanho do corpus de busca (padrão: 1500)
+  JURISBENCH_TRUST_REMOTE_CODE  "1" permite modelos que executam código
+                                próprio do repositório HuggingFace
+                                (padrão: 0 — desabilitado por segurança)
 """
 import json
 import os
@@ -27,6 +30,10 @@ N_QUERIES = int(os.environ.get("JURISBENCH_N_QUERIES", 200))
 N_CORPUS = int(os.environ.get("JURISBENCH_N_CORPUS", 1500))
 TOP_K = 10
 RESULTS_DIR = "results"
+# Carregar um modelo com trust_remote_code executa código arbitrário do
+# repositório HuggingFace na sua máquina. Só habilite para modelos que você
+# auditou e nos quais confia.
+TRUST_REMOTE_CODE = os.environ.get("JURISBENCH_TRUST_REMOTE_CODE", "0") == "1"
 
 DATASET = "celsowm/jurisprudencias_stj"
 
@@ -87,7 +94,7 @@ def run_bm25(query_texts, corpus_texts, corpus_ids):
 def run_embedding(repo, query_texts, corpus_texts, corpus_ids):
     from sentence_transformers import SentenceTransformer
 
-    m = SentenceTransformer(repo, trust_remote_code=True)
+    m = SentenceTransformer(repo, trust_remote_code=TRUST_REMOTE_CODE)
     ce = m.encode(corpus_texts, batch_size=16, show_progress_bar=True,
                   normalize_embeddings=True)
     qe = m.encode(query_texts, batch_size=16, normalize_embeddings=True)
