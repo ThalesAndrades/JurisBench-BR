@@ -1,0 +1,83 @@
+name: "💼 Escriba — lista de interesse (transcrição on-premise)"
+description: "Tenho interesse no Escriba: transcrição de reuniões/audiências/consultas com LGPD, 100% na minha infraestrutura."
+title: "[Escriba] Interesse — "
+labels: ["lead-escriba"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado pelo interesse no **Escriba** (THM Tecnologia)! Responda o que puder — leva ~2 minutos.
+        ⚠️ *Esta issue é pública: não inclua dados confidenciais. Para tratativas privadas: thalesandradees@gmail.com*
+  - type: dropdown
+    id: segmento
+    attributes:
+      label: Segmento da organização
+      options:
+        - Advocacia / escritório jurídico
+        - Saúde (clínica, consultório, hospital)
+        - Contabilidade / financeiro
+        - Lawtech / healthtech / software
+        - Setor público
+        - Outro
+    validations:
+      required: true
+  - type: dropdown
+    id: porte
+    attributes:
+      label: Porte
+      options:
+        - Profissional autônomo
+        - 2–10 pessoas
+        - 11–50 pessoas
+        - 51–200 pessoas
+        - Mais de 200 pessoas
+    validations:
+      required: true
+  - type: dropdown
+    id: volume
+    attributes:
+      label: Volume mensal estimado de áudio (reuniões, audiências, consultas)
+      options:
+        - Até 10 horas/mês
+        - 10–50 horas/mês
+        - 50–200 horas/mês
+        - Mais de 200 horas/mês
+        - Não sei estimar
+    validations:
+      required: true
+  - type: dropdown
+    id: infra
+    attributes:
+      label: Infraestrutura disponível
+      description: O Escriba roda na sua rede. O que você tem hoje?
+      options:
+        - Servidor próprio com GPU
+        - Servidor próprio sem GPU
+        - Nuvem privada (VPS/datacenter contratado)
+        - Nada ainda — precisaria de orientação
+    validations:
+      required: true
+  - type: dropdown
+    id: urgencia
+    attributes:
+      label: Horizonte de adoção
+      options:
+        - Imediato — tenho o problema hoje
+        - Próximos 1–3 meses
+        - Explorando possibilidades
+    validations:
+      required: true
+  - type: textarea
+    id: dor
+    attributes:
+      label: Qual é a sua maior dor hoje com gravações/atas/documentação?
+      placeholder: "Ex.: perdemos horas transcrevendo audiências manualmente; não podemos usar ferramentas de nuvem por sigilo profissional..."
+    validations:
+      required: false
+  - type: input
+    id: contato
+    attributes:
+      label: Como prefere ser contatado? (e-mail profissional ou LinkedIn — opcional aqui; se preferir privacidade, escreva "por e-mail" e nos envie mensagem)
+      placeholder: "nome@escritorio.com.br ou linkedin.com/in/..."
+    validations:
+      required: false

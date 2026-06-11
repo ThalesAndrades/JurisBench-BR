@@ -1,0 +1,1 @@
+{"BM25 (lexical)": [0.771, 0.895], "MiniLM-multilingual": [0.04, 0.08], "serafim-335m (SOTA PT)": [0.17, 0.26], "bge-m3 (SOTA multi)": [0.441, 0.62]}
