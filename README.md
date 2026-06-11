@@ -65,6 +65,13 @@ python jurisbench_v0.py   # resultados em results/
 
 Quer testar **seu próprio modelo**? Adicione o repositório HuggingFace ao dicionário `MODELS` em [`jurisbench_v0.py`](jurisbench_v0.py) e rode. Depois [submeta ao leaderboard](LEADERBOARD.md) 🏆.
 
+Dica: baixe modelos e datasets antecipadamente com o [hfdownloader](https://github.com/ThalesAndrades/HuggingFaceModelDownloader):
+
+```bash
+hfdownloader download BAAI/bge-m3
+hfdownloader download celsowm/jurisprudencias_stj --dataset
+```
+
 ## 🏆 Leaderboard e test set privado
 
 Para evitar overfitting e contaminação, **parte do conjunto de avaliação é privada**. Submissões são avaliadas por nós e publicadas no [LEADERBOARD.md](LEADERBOARD.md).
