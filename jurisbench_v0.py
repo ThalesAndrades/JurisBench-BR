@@ -77,6 +77,7 @@ def ndcg_recall(query_gold, rankings, top_k=TOP_K):
 
 
 def run_bm25(query_texts, corpus_texts, corpus_ids):
+    """Ranqueia o corpus para cada consulta com BM25 (baseline lexical)."""
     from rank_bm25 import BM25Okapi
 
     def tok(t):
@@ -92,6 +93,7 @@ def run_bm25(query_texts, corpus_texts, corpus_ids):
 
 
 def run_embedding(repo, query_texts, corpus_texts, corpus_ids):
+    """Ranqueia o corpus por similaridade de cosseno com o modelo `repo`."""
     from sentence_transformers import SentenceTransformer
 
     m = SentenceTransformer(repo, trust_remote_code=TRUST_REMOTE_CODE)
@@ -103,6 +105,7 @@ def run_embedding(repo, query_texts, corpus_texts, corpus_ids):
 
 
 def main():
+    """Executa o benchmark completo: dados → BM25 → embeddings → results/."""
     random.seed(SEED)
     np.random.seed(SEED)
 
