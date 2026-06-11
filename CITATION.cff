@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Se você usar o JurisBench-BR em pesquisa ou produto, cite-o conforme abaixo."
+title: "JurisBench-BR: um benchmark aberto de recuperação semântica jurídica em português brasileiro"
+authors:
+  - family-names: "Andrades"
+    given-names: "Thales"
+    email: "thalesandradees@gmail.com"
+date-released: 2026-06-11
+version: "0.1.0"
+license: Apache-2.0
+repository-code: "https://github.com/ThalesAndrades/JurisBench-BR"
+url: "https://github.com/ThalesAndrades/JurisBench-BR"
+keywords:
+  - benchmark
+  - information-retrieval
+  - legal-nlp
+  - portuguese
+  - brazil
+  - embeddings
+  - rag
+abstract: >-
+  JurisBench-BR é o primeiro benchmark aberto de recuperação semântica no
+  domínio jurídico brasileiro. A tarefa v0 avalia a recuperação do corpo de
+  acórdãos do STJ a partir do cabeçalho temático da ementa (200 consultas,
+  corpus de 1.500 decisões públicas), medindo nDCG@10 e Recall@10. Os
+  resultados v0 mostram que nenhum embedding aberto supera o baseline
+  lexical BM25 neste domínio.
