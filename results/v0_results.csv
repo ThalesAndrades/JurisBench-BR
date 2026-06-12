@@ -6,3 +6,5 @@ serafim-335m (SOTA PT),0.127,0.220
 BM25 + serafim-335m (SOTA PT) (RRF),0.556,0.770
 bge-m3 (SOTA multi),0.347,0.470
 BM25 + bge-m3 (SOTA multi) (RRF),0.612,0.795
+multilingual-e5-large,0.440,0.575
+BM25 + multilingual-e5-large (RRF),0.652,0.795

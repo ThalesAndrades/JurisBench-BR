@@ -26,5 +26,13 @@
   "BM25 + bge-m3 (SOTA multi) (RRF)": [
     0.6115557681154877,
     0.795
+  ],
+  "multilingual-e5-large": [
+    0.44044293187444866,
+    0.575
+  ],
+  "BM25 + multilingual-e5-large (RRF)": [
+    0.6515223682676838,
+    0.795
   ]
 }

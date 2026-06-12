@@ -27,9 +27,11 @@ Testamos embeddings abertos numa tarefa real de busca jurídica brasileira (recu
 | Modelo | nDCG@10 | Recall@10 |
 |---|---:|---:|
 | 🥇 **BM25 (busca lexical, 1994)** | **0,693** | **0,825** |
-| BM25 + MiniLM (híbrido RRF) | 0,613 | 0,760 |
+| BM25 + e5-large *(melhor híbrido RRF)* | 0,652 | 0,795 |
+| multilingual-e5-large | 0,440 | 0,575 |
+| bge-m3 *(estado da arte multilíngue)* | 0,347 | 0,470 |
+| serafim-335m *(estado da arte em português)* | 0,127 | 0,220 |
 | MiniLM-multilingual *(embedding mais baixado do mundo)* | 0,017 | 0,040 |
-| bge-m3, serafim-335m, multilingual-e5-large | *em avaliação* | *em avaliação* |
 
 *Resultados de 12/06/2026 no [conjunto congelado](data/v0_eval_ids.json); reproduza com `python jurisbench_v0.py`.*
 
@@ -90,7 +92,7 @@ Para evitar overfitting e contaminação, **parte do conjunto de avaliação é 
 - Consulta e documento vêm da **mesma ementa** (cabeçalho → teses); é uma tarefa de pareamento intra-documento, não de busca entre documentos distintos.
 - Fonte única (STJ) e corpus de 1.500 documentos; a v1 expandirá para TJSP/STF.
 - 1 documento relevante por consulta (a v1 terá julgados de relevância graduada).
-- `google/embeddinggemma-300m` ainda não avaliado (repositório gated); bge-m3, serafim-335m e multilingual-e5-large estão em avaliação após a correção de 12/06.
+- `google/embeddinggemma-300m` ainda não avaliado (repositório gated).
 
 Achou outra limitação? [Abra uma issue](https://github.com/ThalesAndrades/JurisBench-BR/issues) — crítica metodológica é contribuição de primeira classe aqui.
 

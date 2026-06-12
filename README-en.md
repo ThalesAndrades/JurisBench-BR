@@ -27,9 +27,11 @@ We tested open embedding models on a realistic Brazilian legal search task (retr
 | Model | nDCG@10 | Recall@10 |
 |---|---:|---:|
 | 🥇 **BM25 (lexical search, 1994)** | **0.693** | **0.825** |
-| BM25 + MiniLM (RRF hybrid) | 0.613 | 0.760 |
+| BM25 + e5-large *(best RRF hybrid)* | 0.652 | 0.795 |
+| multilingual-e5-large | 0.440 | 0.575 |
+| bge-m3 *(multilingual state of the art)* | 0.347 | 0.470 |
+| serafim-335m *(Portuguese state of the art)* | 0.127 | 0.220 |
 | MiniLM-multilingual *(world's most downloaded embedding)* | 0.017 | 0.040 |
-| bge-m3, serafim-335m, multilingual-e5-large | *being evaluated* | *being evaluated* |
 
 *Results from 2026-06-12 on the [frozen evaluation set](data/v0_eval_ids.json); reproduce with `python jurisbench_v0.py`.*
 
@@ -81,7 +83,7 @@ To prevent overfitting and contamination, **part of the evaluation set is privat
 - Query and document come from the **same headnote** (header → theses); it is an intra-document matching task, not cross-document search.
 - Single source (STJ) and a 1,500-document corpus; v1 will expand to TJSP/STF.
 - One relevant document per query (v1 will have graded relevance judgments).
-- `google/embeddinggemma-300m` not yet evaluated (gated repository); bge-m3, serafim-335m and multilingual-e5-large are being re-evaluated after the June 12 correction.
+- `google/embeddinggemma-300m` not yet evaluated (gated repository).
 
 Found another limitation? [Open an issue](https://github.com/ThalesAndrades/JurisBench-BR/issues) — methodological criticism is a first-class contribution here.
 
