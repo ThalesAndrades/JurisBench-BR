@@ -20,18 +20,22 @@
 
 ## 💥 TL;DR
 
-We tested the world's most-used open embedding models on a realistic Brazilian legal search task (retrieving the correct ruling from Brazil's Superior Court of Justice among 1,500 decisions). **Every single one lost — badly — to BM25, a 30-year-old keyword-matching algorithm:**
+We tested open embedding models on a realistic Brazilian legal search task (retrieving the correct ruling from Brazil's Superior Court of Justice among 1,500 documents). **BM25, a 30-year-old keyword-matching algorithm, remains unbeaten:**
 
 ![JurisBench-BR v0 results](assets/results_v0.svg)
 
 | Model | nDCG@10 | Recall@10 |
 |---|---:|---:|
-| 🥇 **BM25 (lexical search, 1994)** | **0.771** | **0.895** |
-| bge-m3 *(multilingual state of the art)* | 0.441 | 0.620 |
-| serafim-335m *(Portuguese state of the art)* | 0.170 | 0.260 |
-| MiniLM-multilingual *(world's most downloaded embedding)* | 0.040 | 0.080 |
+| 🥇 **BM25 (lexical search, 1994)** | **0.693** | **0.825** |
+| BM25 + MiniLM (RRF hybrid) | 0.613 | 0.760 |
+| MiniLM-multilingual *(world's most downloaded embedding)* | 0.017 | 0.040 |
+| bge-m3, serafim-335m, multilingual-e5-large | *being evaluated* | *being evaluated* |
+
+*Results from 2026-06-12 on the [frozen evaluation set](data/v0_eval_ids.json); reproduce with `python jurisbench_v0.py`.*
 
 > **If your legal RAG pipeline uses generic embeddings, it is probably worse than the keyword search it replaced.**
+
+> ⚠️ **Correction (2026-06-12):** the table published on June 11 was **retracted**. The original script used the dataset's `acordao` field as the target document, but that field only contains the standard judgment certificate ("Vistos e relatados... acordam os Ministros..."), nearly identical across all decisions — the task was unsolvable and the numbers were not reproducible from the published code. The task was reimplemented exactly as described (headnote header → numbered theses body), the evaluation set was frozen, and every number in this table comes from the public pipeline. *Honesty first.*
 
 ⭐ **Surprised?** Star the repo to follow upcoming versions and share it.
 
@@ -47,7 +51,7 @@ JurisBench-BR exists to:
 
 ## 🧪 The task (v0)
 
-Realistic legal search: given the **thematic header** of an STJ headnote (e.g. *"DIREITO PENAL. AGRAVO REGIMENTAL. TRÁFICO PRIVILEGIADO..."*), retrieve the **body of the corresponding ruling** (CNJ-standard numbered theses) from a corpus of **1,500 real decisions**. **200 queries**, scored with **nDCG@10** and **Recall@10**.
+Realistic legal search: given the **thematic header** of an STJ headnote (e.g. *"DIREITO PENAL. AGRAVO REGIMENTAL. TRÁFICO PRIVILEGIADO..."*), retrieve the **body of the corresponding headnote** (the CNJ-standard numbered theses, *"1. ... 2. ..."*) from a content-deduplicated corpus of **1,500 real decisions**. **200 queries**, scored with **nDCG@10** and **Recall@10**. The evaluation set is **frozen** in [`data/v0_eval_ids.json`](data/v0_eval_ids.json) — anyone reproduces the exact same numbers even if the upstream dataset changes.
 
 The data are public judicial decisions of the Superior Tribunal de Justiça — official acts, not subject to copyright (Brazilian Law 9.610/98, art. 8, IV), via the [`celsowm/jurisprudencias_stj`](https://huggingface.co/datasets/celsowm/jurisprudencias_stj) dataset.
 
@@ -74,9 +78,10 @@ To prevent overfitting and contamination, **part of the evaluation set is privat
 ## 🧭 Known limitations of v0 (honesty first)
 
 - Lexical overlap between header and body favors BM25; **v1 will add natural-language queries** (layperson question → case law), where the lexical advantage disappears.
+- Query and document come from the **same headnote** (header → theses); it is an intra-document matching task, not cross-document search.
 - Single source (STJ) and a 1,500-document corpus; v1 will expand to TJSP/STF.
 - One relevant document per query (v1 will have graded relevance judgments).
-- `google/embeddinggemma-300m` not yet evaluated (gated repository).
+- `google/embeddinggemma-300m` not yet evaluated (gated repository); bge-m3, serafim-335m and multilingual-e5-large are being re-evaluated after the June 12 correction.
 
 Found another limitation? [Open an issue](https://github.com/ThalesAndrades/JurisBench-BR/issues) — methodological criticism is a first-class contribution here.
 

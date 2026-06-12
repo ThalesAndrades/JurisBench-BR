@@ -22,7 +22,7 @@ Os números provam a lacuna:
 |---|---|
 | O modelo jurídico PT-BR mais usado tem **1,09 milhão de downloads/mês** — e é de 2022, tecnologicamente obsoleto | HuggingFace Hub, jun/2026 |
 | O ASR em português mais usado tem **2,77 milhões de downloads/mês** — e é de 2021 | HuggingFace Hub, jun/2026 |
-| O embedding mais baixado do mundo acerta só **8%** das buscas em jurisprudência brasileira | JurisBench-BR v0 (nosso benchmark) |
+| O embedding mais baixado do mundo acerta só **4%** das buscas em jurisprudência brasileira | JurisBench-BR v0 (nosso benchmark) |
 
 **Milhões de sistemas em produção consomem modelos defasados porque ninguém construiu os sucessores. Nós estamos construindo.**
 
@@ -58,16 +58,16 @@ Modelo de embeddings treinado especificamente para o domínio jurídico brasilei
 
 ## 📊 JurisBench-BR — o benchmark
 
-Construímos o primeiro benchmark de recuperação semântica jurídica em português brasileiro: 200 consultas temáticas sobre um corpus de 1.500 decisões reais do STJ (dados públicos — atos oficiais, Lei 9.610/98, art. 8º, IV).
+Construímos o primeiro benchmark de recuperação semântica jurídica em português brasileiro: 200 consultas temáticas sobre um corpus deduplicado de 1.500 decisões reais do STJ (dados públicos — atos oficiais, Lei 9.610/98, art. 8º, IV), com conjunto de avaliação congelado e reproduzível.
 
-### 📉 Resultados que sustentam a tese
+### 📉 Resultados que sustentam a tese (12/06/2026)
 
 | Modelo | nDCG@10 | Recall@10 |
 |---|---:|---:|
-| **BM25 (busca lexical, 1994)** | **0,771** | **0,895** |
-| bge-m3 (estado da arte multilíngue) | 0,441 | 0,620 |
-| serafim-335m (estado da arte português) | 0,170 | 0,260 |
-| MiniLM-multilingual (224M downloads/mês) | 0,040 | 0,080 |
+| **BM25 (busca lexical, 1994)** | **0,693** | **0,825** |
+| BM25 + MiniLM (híbrido RRF) | 0,613 | 0,760 |
+| MiniLM-multilingual (224M downloads/mês) | 0,017 | 0,040 |
+| bge-m3 · serafim-335m · multilingual-e5-large | *em avaliação* | *em avaliação* |
 
 **Leitura:** toda a busca semântica disponível perde — por margens enormes — para um algoritmo de 30 anos atrás quando o domínio é o jurídico brasileiro. Se o seu RAG jurídico usa embeddings genéricos, ele provavelmente está pior do que a busca por palavra-chave que você substituiu.
 

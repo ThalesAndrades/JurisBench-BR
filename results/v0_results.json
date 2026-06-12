@@ -1,1 +1,14 @@
-{"BM25 (lexical)": [0.771, 0.895], "MiniLM-multilingual": [0.04, 0.08], "serafim-335m (SOTA PT)": [0.17, 0.26], "bge-m3 (SOTA multi)": [0.441, 0.62]}
+{
+  "BM25 (lexical)": [
+    0.6931620087405368,
+    0.825
+  ],
+  "MiniLM-multilingual": [
+    0.016865071699096137,
+    0.04
+  ],
+  "BM25 + MiniLM-multilingual (RRF)": [
+    0.6128418139410217,
+    0.76
+  ]
+}
