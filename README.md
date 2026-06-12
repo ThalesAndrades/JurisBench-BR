@@ -20,18 +20,22 @@
 
 ## 💥 TL;DR
 
-Testamos os embeddings abertos mais usados do mundo numa tarefa real de busca jurídica brasileira (recuperar a decisão correta do STJ entre 1.500 acórdãos). **Todos perderam — feio — para o BM25, um algoritmo de busca por palavra-chave de 30 anos atrás:**
+Testamos embeddings abertos numa tarefa real de busca jurídica brasileira (recuperar a decisão correta do STJ entre 1.500 documentos). **O BM25, um algoritmo de busca por palavra-chave de 30 anos atrás, segue imbatível:**
 
 ![Resultados JurisBench-BR v0](assets/results_v0.svg)
 
 | Modelo | nDCG@10 | Recall@10 |
 |---|---:|---:|
-| 🥇 **BM25 (busca lexical, 1994)** | **0,771** | **0,895** |
-| bge-m3 *(estado da arte multilíngue)* | 0,441 | 0,620 |
-| serafim-335m *(estado da arte em português)* | 0,170 | 0,260 |
-| MiniLM-multilingual *(embedding mais baixado do mundo)* | 0,040 | 0,080 |
+| 🥇 **BM25 (busca lexical, 1994)** | **0,693** | **0,825** |
+| BM25 + MiniLM (híbrido RRF) | 0,613 | 0,760 |
+| MiniLM-multilingual *(embedding mais baixado do mundo)* | 0,017 | 0,040 |
+| bge-m3, serafim-335m, multilingual-e5-large | *em avaliação* | *em avaliação* |
+
+*Resultados de 12/06/2026 no [conjunto congelado](data/v0_eval_ids.json); reproduza com `python jurisbench_v0.py`.*
 
 > **Se o seu RAG jurídico usa embeddings genéricos, ele provavelmente está pior do que a busca por palavra-chave que você substituiu.**
+
+> ⚠️ **Correção (12/06/2026):** a tabela publicada em 11/06 foi **retratada**. O script original usava o campo `acordao` do dataset como documento-alvo, mas esse campo contém apenas a certidão de julgamento padrão ("Vistos e relatados... acordam os Ministros..."), quase idêntica em todas as decisões — a tarefa era insolúvel e os números não eram reproduzíveis pelo código publicado. A tarefa foi reimplementada exatamente como descrita (cabeçalho → corpo de teses da ementa), o conjunto de avaliação foi congelado e todos os números desta tabela saem do pipeline público. *Honestidade primeiro.*
 
 ⭐ **Esse resultado te surpreendeu?** Deixe uma estrela para acompanhar as próximas versões e [compartilhe no X](https://twitter.com/intent/tweet?text=Um%20algoritmo%20de%201994%20vence%20todos%20os%20embeddings%20de%20IA%20na%20busca%20jur%C3%ADdica%20brasileira.%20Benchmark%20aberto%3A&url=https%3A%2F%2Fgithub.com%2FThalesAndrades%2FJurisBench-BR) ou no [LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgithub.com%2FThalesAndrades%2FJurisBench-BR).
 
@@ -49,7 +53,7 @@ O JurisBench-BR existe para:
 
 ## 🧪 A tarefa (v0)
 
-Busca jurídica realista: dado o **cabeçalho temático** de uma ementa do STJ (ex.: *"DIREITO PENAL. AGRAVO REGIMENTAL. TRÁFICO PRIVILEGIADO..."*), recuperar o **corpo da decisão correspondente** (teses numeradas no padrão CNJ) em um corpus de **1.500 decisões reais**. São **200 consultas**, avaliadas com **nDCG@10** e **Recall@10**.
+Busca jurídica realista: dado o **cabeçalho temático** de uma ementa do STJ (ex.: *"DIREITO PENAL. AGRAVO REGIMENTAL. TRÁFICO PRIVILEGIADO..."*), recuperar o **corpo da ementa correspondente** (as teses numeradas no padrão CNJ, *"1. ... 2. ..."*) em um corpus de **1.500 decisões reais**, deduplicado por conteúdo. São **200 consultas**, avaliadas com **nDCG@10** e **Recall@10**. O conjunto de avaliação é **congelado** em [`data/v0_eval_ids.json`](data/v0_eval_ids.json) — qualquer pessoa reproduz exatamente os mesmos números, mesmo que o dataset upstream mude.
 
 Os dados são decisões judiciais públicas do Superior Tribunal de Justiça — atos oficiais, sem proteção autoral (Lei 9.610/98, art. 8º, IV), via dataset [`celsowm/jurisprudencias_stj`](https://huggingface.co/datasets/celsowm/jurisprudencias_stj).
 
@@ -83,9 +87,10 @@ Para evitar overfitting e contaminação, **parte do conjunto de avaliação é 
 ## 🧭 Limitações conhecidas da v0 (honestidade primeiro)
 
 - A sobreposição lexical entre cabeçalho e corpo favorece o BM25; a **v1 incluirá consultas em linguagem natural** (pergunta de leigo → jurisprudência), onde a vantagem lexical desaparece.
+- Consulta e documento vêm da **mesma ementa** (cabeçalho → teses); é uma tarefa de pareamento intra-documento, não de busca entre documentos distintos.
 - Fonte única (STJ) e corpus de 1.500 documentos; a v1 expandirá para TJSP/STF.
 - 1 documento relevante por consulta (a v1 terá julgados de relevância graduada).
-- `google/embeddinggemma-300m` ainda não avaliado (repositório gated).
+- `google/embeddinggemma-300m` ainda não avaliado (repositório gated); bge-m3, serafim-335m e multilingual-e5-large estão em avaliação após a correção de 12/06.
 
 Achou outra limitação? [Abra uma issue](https://github.com/ThalesAndrades/JurisBench-BR/issues) — crítica metodológica é contribuição de primeira classe aqui.
 

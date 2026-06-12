@@ -1,5 +1,6 @@
-modelo,ndcg@10,recall@10
-BM25 (lexical),0.771,0.895
-MiniLM-multilingual,0.04,0.08
-serafim-335m (SOTA PT),0.17,0.26
-bge-m3 (SOTA multi),0.441,0.62
+Modelo,nDCG@10,Recall@10
+BM25 (lexical),0.693,0.825
+MiniLM-multilingual,0.017,0.040
+BM25 + MiniLM-multilingual (RRF),0.613,0.760
+serafim-335m (SOTA PT),0.127,0.220
+BM25 + serafim-335m (SOTA PT) (RRF),0.556,0.770

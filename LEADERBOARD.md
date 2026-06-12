@@ -1,15 +1,17 @@
 # 🏆 Leaderboard — JurisBench-BR
 
-Tarefa v0: **cabeçalho de ementa → corpo do acórdão** (STJ) · 200 consultas · corpus de 1.500 decisões · métricas nDCG@10 e Recall@10.
+Tarefa v0: **cabeçalho de ementa → corpo de teses da ementa** (STJ) · 200 consultas · corpus de 1.500 decisões deduplicado · métricas nDCG@10 e Recall@10 · [conjunto de avaliação congelado](data/v0_eval_ids.json).
 
-## Resultados oficiais (v0 — 11/06/2026)
+> ⚠️ **Retratação (12/06/2026):** a tabela de 11/06 foi retirada — o script original apontava para o campo errado do dataset (a certidão de julgamento, idêntica em todas as decisões) e seus números não eram reproduzíveis. Detalhes no [README](README.md). Os resultados abaixo saem do pipeline público atual.
+
+## Resultados oficiais (v0 — 12/06/2026)
 
 | # | Modelo | Tipo | nDCG@10 | Recall@10 | Avaliado em |
 |---|---|---|---:|---:|---|
-| 1 | **BM25** | Lexical (baseline, 1994) | **0,771** | **0,895** | 11/06/2026 |
-| 2 | [bge-m3](https://huggingface.co/BAAI/bge-m3) | Embedding multilíngue | 0,441 | 0,620 | 11/06/2026 |
-| 3 | [serafim-335m](https://huggingface.co/PORTULAN/serafim-335m-portuguese-pt-sentence-encoder-ir) | Embedding PT | 0,170 | 0,260 | 11/06/2026 |
-| 4 | [MiniLM-multilingual](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2) | Embedding multilíngue | 0,040 | 0,080 | 11/06/2026 |
+| 1 | **BM25** | Lexical (baseline, 1994) | **0,693** | **0,825** | 12/06/2026 |
+| 2 | BM25 + MiniLM (RRF) | Híbrido | 0,613 | 0,760 | 12/06/2026 |
+| 3 | [MiniLM-multilingual](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2) | Embedding multilíngue | 0,017 | 0,040 | 12/06/2026 |
+| — | [bge-m3](https://huggingface.co/BAAI/bge-m3) · [serafim-335m](https://huggingface.co/PORTULAN/serafim-335m-portuguese-pt-sentence-encoder-ir) · [multilingual-e5-large](https://huggingface.co/intfloat/multilingual-e5-large) | Embeddings | *em avaliação* | *em avaliação* | — |
 
 > 🎯 **O desafio em aberto:** nenhum embedding superou o BM25 até hoje. O primeiro modelo que conseguir entra no **Hall da Fama** abaixo.
 
