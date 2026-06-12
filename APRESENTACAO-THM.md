@@ -65,9 +65,11 @@ Construímos o primeiro benchmark de recuperação semântica jurídica em portu
 | Modelo | nDCG@10 | Recall@10 |
 |---|---:|---:|
 | **BM25 (busca lexical, 1994)** | **0,693** | **0,825** |
-| BM25 + MiniLM (híbrido RRF) | 0,613 | 0,760 |
+| BM25 + e5-large (melhor híbrido RRF) | 0,652 | 0,795 |
+| multilingual-e5-large | 0,440 | 0,575 |
+| bge-m3 (estado da arte multilíngue) | 0,347 | 0,470 |
+| serafim-335m (estado da arte português) | 0,127 | 0,220 |
 | MiniLM-multilingual (224M downloads/mês) | 0,017 | 0,040 |
-| bge-m3 · serafim-335m · multilingual-e5-large | *em avaliação* | *em avaliação* |
 
 **Leitura:** toda a busca semântica disponível perde — por margens enormes — para um algoritmo de 30 anos atrás quando o domínio é o jurídico brasileiro. Se o seu RAG jurídico usa embeddings genéricos, ele provavelmente está pior do que a busca por palavra-chave que você substituiu.
 

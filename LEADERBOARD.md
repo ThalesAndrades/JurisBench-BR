@@ -9,9 +9,16 @@ Tarefa v0: **cabeçalho de ementa → corpo de teses da ementa** (STJ) · 200 co
 | # | Modelo | Tipo | nDCG@10 | Recall@10 | Avaliado em |
 |---|---|---|---:|---:|---|
 | 1 | **BM25** | Lexical (baseline, 1994) | **0,693** | **0,825** | 12/06/2026 |
-| 2 | BM25 + MiniLM (RRF) | Híbrido | 0,613 | 0,760 | 12/06/2026 |
-| 3 | [MiniLM-multilingual](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2) | Embedding multilíngue | 0,017 | 0,040 | 12/06/2026 |
-| — | [bge-m3](https://huggingface.co/BAAI/bge-m3) · [serafim-335m](https://huggingface.co/PORTULAN/serafim-335m-portuguese-pt-sentence-encoder-ir) · [multilingual-e5-large](https://huggingface.co/intfloat/multilingual-e5-large) | Embeddings | *em avaliação* | *em avaliação* | — |
+| 2 | BM25 + e5-large (RRF) | Híbrido | 0,652 | 0,795 | 12/06/2026 |
+| 3 | BM25 + MiniLM (RRF) | Híbrido | 0,613 | 0,760 | 12/06/2026 |
+| 4 | BM25 + bge-m3 (RRF) | Híbrido | 0,612 | 0,795 | 12/06/2026 |
+| 5 | BM25 + serafim (RRF) | Híbrido | 0,556 | 0,770 | 12/06/2026 |
+| 6 | [multilingual-e5-large](https://huggingface.co/intfloat/multilingual-e5-large) | Embedding multilíngue | 0,440 | 0,575 | 12/06/2026 |
+| 7 | [bge-m3](https://huggingface.co/BAAI/bge-m3) | Embedding multilíngue | 0,347 | 0,470 | 12/06/2026 |
+| 8 | [serafim-335m](https://huggingface.co/PORTULAN/serafim-335m-portuguese-pt-sentence-encoder-ir) | Embedding PT | 0,127 | 0,220 | 12/06/2026 |
+| 9 | [MiniLM-multilingual](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2) | Embedding multilíngue | 0,017 | 0,040 | 12/06/2026 |
+
+> Nem o melhor híbrido BM25+embedding (RRF) supera o BM25 puro — a fusão com um embedding genérico só **piora** a busca lexical neste domínio.
 
 > 🎯 **O desafio em aberto:** nenhum embedding superou o BM25 até hoje. O primeiro modelo que conseguir entra no **Hall da Fama** abaixo.
 

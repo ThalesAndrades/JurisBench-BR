@@ -18,3 +18,6 @@ models/
 
 # Notebooks
 .ipynb_checkpoints/
+
+# Artefatos gerados para publicação no HF Hub
+hf_dataset/
